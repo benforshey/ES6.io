@@ -30,18 +30,58 @@
 </ul>
 
 <script>
-
+  // NOTE: nothing is chained (or concise) in the first solution, to show work step-by-step
   // Select all the list items on the page and convert to array
+  const time = Array.from(document.querySelectorAll('[data-time]'))
+  console.log(time)
 
   // Filter for only the elements that contain the word 'flexbox'
+  const flexBoxTime = time.filter(el => el.innerHTML.toLowerCase().includes('flexbox'))  // a little error proofing in case there's a variation in capitalization
+  console.log(flexBoxTime)
 
   // map down to a list of time strings
+  const timeStrings = flexBoxTime.map(el => el.dataset.time)
+  console.log(timeStrings)
 
   // map to an array of seconds
+  const seconds = timeStrings.map(time => {
+    const minSec = time.split(':')
+    const seconds = (Number.parseFloat(minSec[0] * 60) + Number.parseFloat(minSec[1] || 0))  // a little error proofing in case the data-time attribute doesn't include seconds
+    return seconds
+  })
+  console.log(seconds)
 
   // reduce to get total
+  const totalSeconds = seconds.reduce((accumulator, currentValue) => {
+    const seconds = accumulator + currentValue
+    return seconds
+  }, 0)
+
+  const totalMinutes = (totalSeconds / 60).toFixed(2)
+  const totalHours = (totalMinutes / 60).toFixed(2)
+
+  console.log(`total minutes: ${totalMinutes}`)
+  console.log(`total hours: ${totalHours}`)
 
   // 🔥 This can also be done in a single .reduce(), but we're practicing arrow functions here, so chain them!
+
+  // NOTE: concise solution, albeit less readable
+  const flexBoxTimeInSeconds = time
+    .filter(el => el.innerHTML.toLowerCase().includes('flexbox'))
+    .map(el => {
+      const minSec = el.dataset.time.split(':')
+        .map(time => Number.parseFloat(time))
+
+      return (minSec[0] * 60) + (minSec[1] || 0)
+    })
+    .reduce((acc, curr) => acc + curr, 0)
+
+  const flexBoxMinutes = (flexBoxTimeInSeconds / 60).toFixed(2)
+  const flexBoxHours = ((flexBoxTimeInSeconds / 60) / 60).toFixed(2)
+
+  console.log(flexBoxTimeInSeconds)
+  console.log(flexBoxMinutes)
+  console.log(flexBoxHours)
 
 </script>
 </body>

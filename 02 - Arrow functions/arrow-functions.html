@@ -6,6 +6,7 @@
 </head>
 <body>
 <script>
+  // Arrow Funcitons: concise, implicit returns, doesn't rebind "this" (useful in event handlers)
   const names = ['wes', 'kait', 'lux'];
 
   const fullNames = names.map(function(name) {
@@ -24,8 +25,11 @@
 
   const fullNames5 = names.map(() => `cool bos`);
 
+  // Arrow functions are always anonymous—not a function declaration.
+  // This has implications for stack traces, but named function expressions help solve this.
   const sayMyName = (name) => {
-    alert(`Hello ${name}!`)
+    // throw new Error  // uncomment to see the variable name in the stack trace
+    console.log(`Hello ${name}!`)
   }
 
   sayMyName('Wes');

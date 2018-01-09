@@ -62,14 +62,18 @@
 
   <script>
     const box = document.querySelector('.box');
+    //NOTE: Here we take advantage of 'this' being rebound to the clicked element with a standard function. An arrow function would not rebind 'this', causing the global window object to be returned.
     box.addEventListener('click', function() {
       let first = 'opening';
       let second = 'open';
 
+      // This just reverses the animation, swapping the order of the classes.
+      // NOTE: This uses destructuring.
       if(this.classList.contains(first)) {
         [first, second] = [second, first];
       }
 
+      // NOTE: Here we take advantage of the arrow function not rebinding 'this', allowing the calling function to inherit the 'this' context. A standard function would need to have '.bind(this)' (or 'self = this'), since setTimeout is a global method.
       this.classList.toggle(first);
       setTimeout(() => {
         console.log(this);

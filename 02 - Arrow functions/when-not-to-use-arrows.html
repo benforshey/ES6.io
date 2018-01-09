@@ -12,7 +12,10 @@
 <button id="pushy">Push Me</button>
 
 <script>
+  // NOTE: good summary: https://dmitripavlutin.com/when-not-to-use-arrow-functions-in-javascript/
+
   // When you really need `this`
+  // NOTE: To clarify for me: when you want 'this' to be rebound to the calling scope (an arrow function's would be the window object, which is where event listeners exist).
   const button = document.querySelector('#pushy');
   button.addEventListener('click', function() {
     console.log(this);
@@ -20,15 +23,21 @@
   });
 
   // When you need a method to bind to an object
+  // NOTE: To clarify for me: ...and not the scope in which the variable exists (global).
   const person = {
     points: 23,
     score() {
+      console.log(this);
+      this.points++;
+    },
+    scoreGlobal: () => {
       console.log(this);
       this.points++;
     }
   }
 
   // When you need to add a prototype method
+  // NOTE: To clarify for me: an arrow function would bring the lexical scoping to 'window', whereas a regular function binds the lexical scoping to 'Car'.
   class Car {
     constructor(make, colour) {
       this.make = make;
@@ -44,6 +53,7 @@
   };
 
   // When you need arguments object
+  // NOTE: Interesting! I didn't know that arrow functions didn't have access to the 'arguments' object...although it's been depreciated anyway.
   const orderChildren = function() {
     const children = Array.from(arguments);
     return children.map((child, i) => {
