@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lesson 01</title>
+</head>
+<body>
+    <h1>01.02 — <code>let</code> and <code>const</code></h1>
+    <p>It&rsquo;s all in the console.</p>
+<script>
+    // replacing the IFFE—among other things, function scoping to ensure that variable scope doesn't conflict; see jQuery
+    // http://benalman.com/news/2010/11/immediately-invoked-function-expression/
+    (function () {
+        var myName = 'Ben'  // interestingly, don't use the document variable "name" here, as that will reference the global object (in browsers) "name" property
+        console.log(myName)
+    })()
+    try {
+        console.log(myName);
+    } catch (err) {
+        console.error(err)
+    }
+
+    // Block scoping with const & let prevents namespace collision
+    {
+        const myName = 'Ben'
+        console.log(myName)
+    }
+    try {
+        console.log(myName);
+    } catch (err) {
+        console.error(err)
+    }
+
+    // preventing for loop counter collision; use let
+    // also, .map(), .filter(), and .reduce() are your friend
+    for (var i = 0; i < 10; i++) {
+    // for (let i = 0; i < 10; i++) {
+        console.log(i)
+        setTimeout(function () {
+            console.log(`"i" is defined as ${i}`)
+        }, 1000 + i)
+    }
+    try {
+        console.log(`"i" is ${i}`);
+    } catch (err) {
+        console.error(err)
+    }
+
+    console.log('canary')
+</script>
+</body>
+</html>

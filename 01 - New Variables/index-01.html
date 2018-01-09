@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lesson 01</title>
+</head>
+<body>
+    <h1>01.01 — <code>let</code> and <code>const</code></h1>
+    <p>It&rsquo;s all in the console.</p>
+<script>
+    function setWidth (width = 100) {
+        var width = width
+        return width
+    }
+    // var is function scoped
+    console.log(width)
+    var width = setWidth()
+    console.log(width)
+
+    // var can be redefined by declaring the same variable over the old variable
+    var width = 200
+    console.log(width)
+
+    var age = 33
+    if (age > 12) {
+        var dogYears = age * 7
+        console.log(`You are ${dogYears} dog years old!`)
+    }
+    // var is not block scoped (scoped to braces)
+    console.log(dogYears)
+
+    // let and const are block scoped
+    if (age > 1) {
+        const hamsterYears = age * 58
+        console.log(`You are ${hamsterYears} hamster years old!`)
+    }
+    try {
+        console.log(hamsterYears)
+    } catch(err) {
+        console.error(err)
+    }
+
+    // const cannot be redefined
+    try {
+        const key = '1aef-32134'
+        key = '1aef-85961'
+        console.log(key)
+    } catch(err) {
+        console.error(err)
+    }
+
+    // let can be redefined
+    try {
+        let score = 20
+        score = 60
+        console.log(score)
+    } catch(err) {
+        console.error(err)
+    }
+
+    // const's reference value is immutable; the referenced object is mutable
+    // "A const statement only prevents the variable binding from referencing a different value."
+    // https://ponyfoo.com/articles/const-variables-not-immutable
+    try {
+        const obj = {
+            main: '1aef-32134'
+        }
+        const arr = ['Benjamin']
+
+        obj.main = '1aef-85961'
+        arr[0] = 'Ben'
+
+        console.table(obj)
+        console.table(arr)
+    } catch(err) {
+        console.log(err)
+    }
+
+    // Objects (and arrays, which are objects) can be made immutable through Object.freeze(object). It's shallow by default, though. It also does not work on Date, Map, or Set.
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
+    try {
+        const person = {
+            age: 33
+        }
+        const list = ['potatoes']
+
+        Object.freeze(person)
+        Object.freeze(list)
+
+        // objects are numerically keyed arrays under the hood
+        console.log('typeof list array:', typeof list)
+
+        person.heightInches = 71
+        list['tomatoes']
+        list.push('butter')  // interestingly, will throw an error, while object (and array) property reassignment will silently fail
+
+        console.table(person)
+        console.table(list)
+    } catch (err) {
+        console.error(err)
+    }
+
+    console.log('canary')
+</script>
+</body>
+</html>
