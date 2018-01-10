@@ -15,7 +15,10 @@
   function renderKeywords(keywords) {
     return `
       <ul>
-        ${keywords.map(keyword => `<li>${keyword}</li>`).join('')}
+        ${keywords
+          .map(keyword => `<li>${keyword}</li>`)
+          .join('')
+        }
       </ul>
     `;
   }

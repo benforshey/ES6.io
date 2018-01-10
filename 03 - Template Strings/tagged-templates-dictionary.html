@@ -22,8 +22,25 @@
     JS: 'JavaScript'
   };
 
-  const first = 'Wes';
-  const last = 'Bos';
+  function makeAbbreviations (strings, ...values) {
+    return strings.reduce((accum, curr, idx) => {
+      const abbr = dict[values[idx]]
+      ? `<abbr title="${dict[values[idx]]}">${values[idx]}</abbr>`
+      : ''
+
+      return `${accum}${curr}${abbr}`
+    })
+  }
+
+  const first = 'Ben';
+  const last = 'Forshey';
+  const sentence = makeAbbreviations`Hey, I'm ${first} ${last}—a web developer who uses ${'HTML'}, ${'CSS'}, and ${'JS'} to get things done on the web!`
+
+  const container = document.querySelector('.bio')
+  const bio = document.createElement('p')
+
+  bio.innerHTML = sentence
+  container.appendChild(bio)
 
 </script>
 </body>

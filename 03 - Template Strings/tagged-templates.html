@@ -11,12 +11,24 @@
 </head>
 <body>
 <script>
-  function highlight(strings, ...values) {
-    let str = '';
-    strings.forEach((string, i) => {
-      str += `${string} <span contenteditable class="hl">${values[i] || ''}</span>`;
-    });
-    return str;
+  // NOTE: Strings array is always going to be 1 value longer than the values array. Even if you tack an argument to the end of the string, the strings array's last value will be "".
+  function highlight(strings, ...values) { // I think this is the first time we've used rest parameters.
+    // NOTE: I rewrote this, below.
+    // let str = '';
+    // strings.forEach((string, i) => {
+    //   str += `${string} <span contenteditable class="hl">${values[i] || ''}</span>`;
+    // });
+    // return str;
+
+    // debugger  // How did I not know about this?
+    return strings
+      .reduce((string, frag, idx) => {
+        const hl = values[idx]
+        ? `<span contenteditable class="hl">${values[idx]}</span>`
+        : ''
+
+        return `${string}${frag}${hl}`
+      }, ``)
   }
 
   const name = 'Snickers';
