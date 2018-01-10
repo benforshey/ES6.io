@@ -19,6 +19,12 @@
     console.log(value, prop);
   }
 
+  // NOTE: Object.keys() returns an array of all the keys within the object.
+  for (const prop of Object.keys(apple)) {
+    console.log(prop, apple[prop])
+  }
+  console.log(Object.keys(apple))
+
 </script>
 </body>
 </html>

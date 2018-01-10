@@ -6,6 +6,7 @@
 </head>
 <body>
 <script>
+  // NOTE: Good summary of for-in and for-of loops: https://bitsofco.de/for-in-vs-for-of/
   /* eslint-disable */
    Array.prototype.shuffle = function() {
      var i = this.length, j, temp;
@@ -23,27 +24,37 @@
 
   cuts.shop = 'MM MEats';
 
-  // for (let i = 0; i < cuts.length; i++) {
-  //   console.log(cuts[i]);
-  // }
+  // NOTE: Somewhat verbose, confusing syntax.
+  for (let i = 0; i < cuts.length; i++) {
+    console.log(cuts[i]);
+  }
 
-  // cuts.forEach((cut) => {
-  //   console.log(cut);
-  //   if(cut === 'Brisket') {
-  //     continue;
-  //   }
-  // });
+  // NOTE: Cannot break or continue;
+  cuts.forEach((cut) => {
+    console.log(cut);
+  });
 
-  // for (const index in cuts) {
-  //   console.log(cuts[index]);
-  // }
+  // NOTE: When used on arrays where the prototype has been modified, for-in loops will iterate over prototype methods. Best left for objects only.
+  for (const index in cuts) {
+    console.log(cuts[index]);
+  }
 
+  // NOTE: Arrays have .entries(), which exposes and ArrayIterator. We can call .next() on a varaible containing the array iterator. Why not just use for-in? Not sure. Can use continue and break, though.
   for (const cut of cuts) {
     if(cut === 'Brisket') {
       continue;
+      // break;
     }
     console.log(cut);
   }
+
+  // NOTE: Mapping over an array with similar behavior to continue;
+  cuts.map(cut => {
+    if (cut === 'Brisket') {
+      return
+    }
+    console.log(cut)
+  })
 
 </script>
 </body>
