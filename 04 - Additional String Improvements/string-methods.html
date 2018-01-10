@@ -16,12 +16,18 @@ const model = 'x5';
 const colour = 'Royal Blue';
 
 // .startsWith()
+console.log(course.toLowerCase().startsWith('rfb'))
+console.log(flightNumber.startsWith('AC', 3))  // optional position parameter
 
 // .endsWith()
+console.log(flightNumber.endsWith('jz'))
+console.log(accountNumber.endsWith('RT', 11))  // length, not 0-based position
 
 // .includes()
+console.log(flightNumber.includes('AC'))
 
 // .repeat()
+console.log()
 
 function leftPad(str, length = 20) {
   return `→ ${' '.repeat(length - str.length)}${str}`;
