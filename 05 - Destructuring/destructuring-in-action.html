@@ -13,6 +13,13 @@
   [inRing, onSide] = [onSide, inRing];
   console.log(inRing, onSide);
 
+  // NOTE: Just an alternative way to solve it.
+  function tagTeam (...wrestlers) {
+    return [...wrestlers].reverse()
+  }
+
+  const ding = tagTeam(inRing, onSide)
+  console.log(ding)
 </script>
 </body>
 </html>

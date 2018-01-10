@@ -10,11 +10,15 @@
   const [name, id, website] = details;
   console.log(name, id, website);
 
+  // NOTE: I could see this being ridiculously useful for Google Sheets CSV API.
   const data = 'Basketball,Sports,90210,23,wes,bos,cool';
   const [itemName, category, sku, inventory] = data.split(',');
 
   const team = ['Wes', 'Harry', 'Sarah', 'Keegan', 'Riker'];
 
+  // NOTE: Awesome useage of the spread syntax. Also, spread syntax (spread operator) is easily confused with rest parameters, in other use cases.
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters
   const [captain, assistant, ...players] = team;
 
 </script>

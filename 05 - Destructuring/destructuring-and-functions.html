@@ -16,12 +16,19 @@
     return converted;
   }
 
+  // NOTE: Because object destructuring uses keys, the order of the keys doesn't matter; if there's a matching key, it will destructure.
+  const { USD, GPB, AUD, MEX } = convertCurrency(1000)
+
   function tipCalc({ total = 100, tip = 0.15, tax = 0.13 } = {}) {
     return total + (tip * total) + (tax * total);
   }
 
+  // NOTE: So destructuring really can be pretty useful with parameters; you're passing in a config object.
   const bill = tipCalc({ tip: 0.20, total: 200 });
+  // NOTE: This use case is why the tipCalc fn has a default value on the destructured config object ({...args} = {}). At worst, we pass in an empty object, allowing the default values to fill in the obj.
+  const defaultBill = tipCalc()
   console.log(bill);
+  console.log(defaultBill);
 
 </script>
 </body>
