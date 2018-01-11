@@ -53,7 +53,7 @@
   };
 
   // When you need arguments object
-  // NOTE: Interesting! I didn't know that arrow functions didn't have access to the 'arguments' object...although it's been depreciated anyway.
+  // NOTE: Interesting! I didn't know that arrow functions didn't have access to the 'arguments' object...although it's been troublesome anyway.
   const orderChildren = function() {
     const children = Array.from(arguments);
     return children.map((child, i) => {
