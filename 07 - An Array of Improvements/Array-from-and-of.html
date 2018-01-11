@@ -11,24 +11,37 @@
   </div>
 <body>
 <script>
-  // const people = document.querySelectorAll('.people p');
-  // const peopleArray = Array.from(people, person => {
-  //   console.log(person);
-  //   return person.textContent;
-  // });
-  // console.log(peopleArray);
+  // NOTE: neither .from() or .of() methods are inherited through the prototype; they exist on the Array object itself (like .parseInt() and .parseFloat()).
+  const people = document.querySelectorAll('.people p');
+  const peopleArray = Array.from(people)
+  const names = peopleArray.map(person => person.textContent);
 
-  // // const names = people.map(person => person.textContent);
+  console.log(names)
+
+  // NOTE:  Also, can pass mapFn as second arg, bypassing creation of intermediate array just to map over contents. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
+  const list = Array.from(people, person => {
+    console.log(person);
+    return person.textContent;
+  });
+  console.log(list);
 
   function sumAll() {
     const nums = Array.from(arguments);
     return nums.reduce((prev, next) => prev + next, 0);
   }
+  console.log(sumAll(2, 34, 23, 234, 234, 234234, 234234, 2342));
 
-  sumAll(2, 34, 23, 234, 234, 234234, 234234, 2342);
+  // NOTE: arguments is troublesome and rest parameter syntax is already an array, so I made another fn, sum.
+  function sum (...nums) {
+    return nums.reduce((accum, curr) => accum + Number.parseInt(curr, 10), 0)
+  }
+  console.log(sum(2, 34, 23, 234, 234, 234234, '234234', 2342))
 
   const ages = Array.of(12,4,23,62,34);
   console.log(ages);
+
+  const agesLiteral = [12,4,23,62,34]
+  console.log(agesLiteral)
 
 </script>
 </body>

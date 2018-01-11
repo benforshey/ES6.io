@@ -180,8 +180,17 @@
   const code = 'VBgtGQcSf';
   const post = posts.find(post => post.code === code);
 
+  // NOTE: .findIndex() allows for operators (comparison, logical, etc), unlike .indexOf(), which simply matches.
   const postIndex = posts.findIndex(post => post.code === code);
   console.log(postIndex);
+
+  // NOTE: Just havin' some fun with functional programming.
+  function getPostById (needle, haystack = posts) {
+    return haystack.find(hay => hay.code === needle)
+  }
+
+  const myPost = getPostById('VBgtGQcSf', posts)
+  console.log(myPost)
 
 </script>
 </body>
