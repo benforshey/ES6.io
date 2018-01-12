@@ -8,13 +8,14 @@
 <script>
   const inventors = ['Einstein', 'Newton', 'Galileo'];
   const newInventors = ['Musk', 'Jobs'];
+  // NOTE: equivalent to inventors.push.apply(inventors, newInventors)
   inventors.push(...newInventors);
   console.log(inventors);
 
   const name = ['Wes', 'Bos'];
 
   function sayHi(first, last) {
-    alert(`Hey there ${first} ${last}`);
+    console.log(`Hey there ${first} ${last}`);
   }
 
   sayHi(...name);

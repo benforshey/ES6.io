@@ -12,7 +12,7 @@
   </div>
 <script>
   const people = Array.from(document.querySelectorAll('.people p'));
-  const names = people.map((person) => person.textContent );
+  const names = people.map(person => person.textContent );
 
   const deepDish = {
     pizzaName: 'Deep Dish',
@@ -21,7 +21,7 @@
   };
 
   const shoppingList = ['Milk', 'Flour', ...deepDish.ingredients];
-  // console.log(shoppingList);
+  console.log(shoppingList);
 
   const comments = [
     { id: 209384, text: 'I love your dog!' },

@@ -11,6 +11,8 @@
   const specialty = ['Meatzza', 'Spicy Mama', 'Margherita'];
 
   const pizzas = [...featured, 'veg', ...specialty];
+
+  // NOTE: Breaks link to referenced array, like [].concat(pizzas)
   const fridayPizzas = [...pizzas];
 
   const deepDish = {

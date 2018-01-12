@@ -30,7 +30,17 @@
   <h2 class="jump">SPREADS!</h2>
 
 <script>
-  
+  const header = document.querySelector('.jump')
+
+  function letterSpanner (content) {
+    return [...content.innerText]
+      .map(text => `<span>${text}</span>`)
+      .join('')
+  }
+
+  header.innerHTML = letterSpanner(header)
+
+
 </script>
 </body>
 </html>
