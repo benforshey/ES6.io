@@ -6,6 +6,8 @@
 </head>
 <body>
 <script>
+  // NOTE: Our 6th primitive type (string, number, boolean, null, undefined, symbol). Everything in JS that's not an object is a primitive. Symbols will never conflict, even if the descriptor is the same (wes !== person).
+  // https://developer.mozilla.org/en-US/docs/Glossary/Symbol
   const wes = Symbol('Wes');
   const person = Symbol('Wes');
 
@@ -15,6 +17,7 @@
     [Symbol('olivia')]: { grade: 80, gender: 'female' },
   };
 
+  // NOTE: Symbols are not enumerable.
   for (const person in classRoom) {
     console.log(person);
   }
