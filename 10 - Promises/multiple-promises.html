@@ -6,35 +6,38 @@
 </head>
 <body>
 <script>
-  // const weather = new Promise((resolve) => {
-  //   setTimeout(() => {
-  //     resolve({ temp: 29, conditions: 'Sunny with Clouds'});
-  //   }, 2000);
-  // });
+  const weather = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ temp: 29, conditions: 'Sunny with Clouds'});
+    }, 2000);
+  });
 
-  // const tweets = new Promise((resolve) => {
-  //   setTimeout(() => {
-  //     resolve(['I like cake', 'BBQ is good too!']);
-  //   }, 500);
-  // });
+  const tweets = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(['I like cake', 'BBQ is good too!']);
+    }, 500);
+  });
 
-  // Promise
-  //   .all([weather, tweets])
-  //   .then(responses => {
-  //     const [weatherInfo, tweetInfo] = responses;
-  //     console.log(weatherInfo, tweetInfo)
-  //   });
+// NOTE: MDN: "The Promise.all() method returns a single Promise that resolves when all of the promises in the iterable argument have resolved or when the iterable argument contains no promises. It rejects with the reason of the first promise that rejects."
+  Promise
+    .all([weather, tweets])
+    .then(responses => {
+      const [weatherInfo, tweetInfo] = responses;
+      console.log(weatherInfo, tweetInfo)
+    });
 
   const postsPromise = fetch('http://wesbos.com/wp-json/wp/v2/posts');
   const streetCarsPromise = fetch('http://data.ratp.fr/api/datasets/1.0/search/?q=paris');
 
+// NOTE: Is this Promise hell?
   Promise
     .all([postsPromise, streetCarsPromise])
     .then(responses => {
-      return Promise.all(responses.map(res => res.json()))
+      return Promise
+        .all(responses.map(res => res.json()))
     })
     .then(responses => {
-      console.log(responses);
+      console.log('from tail: ', responses);
     });
 
 </script>

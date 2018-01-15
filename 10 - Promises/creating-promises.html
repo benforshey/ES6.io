@@ -6,11 +6,23 @@
 </head>
 <body>
 <script>
+  // NOTE: once a promise is resolved, it cannot be re-rejected.
   const p = new Promise((resolve, reject) => {
     setTimeout(() => {
-      reject(Error('Err wes isn\'t cool'));
-    }, 1000);
+      resolve('Yass!')
+    }, getRandomIntInclusive(10, 3000));
+
+    setTimeout(() => {
+      reject(Error(`Err wes isn't cool`));
+    }, getRandomIntInclusive(10, 3000));
   });
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+  function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+  }
 
   p
     .then(data => {

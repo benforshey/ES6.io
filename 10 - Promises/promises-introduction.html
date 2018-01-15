@@ -6,14 +6,24 @@
 </head>
 <body>
 <script>
-const postsPromise = fetch('http://wesbos.com/wp-json/wp/v2/posts');
+  // NOTE: Bottom line: "Promises allow us the synchronous way of writing code while giving us asynchronous execution of code.", from https://www.telerik.com/blogs/what-is-the-point-of-promises
+  // NOTE: JavaScript, which is single-threaded (but can offload work to multiple threads through Web Workers), will move through its call stack one item at a time (synchronous). JavaScript broswers I/O is also largely non-blocking (asynchronous), so setTimeout, Promises, etc., will all come back up to the top of the stack when they're relevant (resolved, timed out, etc.)
+  console.log('#1 going to fetch')
+  const postsPromise = fetch('http://wesbos.com/wp-json/wp/v2/posts');
+  console.log('#2 have called fetch')
+  setTimeout(function () {
+    console.log(`#4 the delayed result of fetch, which returns a promise: ${postsPromise}`)
+  }, 3000)
+  console.log(`#3 the result of fetch, which returns a promise: ${postsPromise}`)
 
-postsPromise
-  .then(data => data.json())
-  .then(data => { console.log(data) })
-  .catch((err) => {
-    console.error(err);
-  })
+  // NOTE: I can think of .then() as a success event listener on the Promise; .catch() as a failure event listener.
+  // Also, you're going to be using .json() alot.
+  postsPromise
+    .then(data => data.json())
+    .then(data => { console.log(data) })
+    .catch((err) => {
+      console.error(err);
+    })
 
 </script>
 </body>
