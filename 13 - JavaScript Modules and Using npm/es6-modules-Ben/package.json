@@ -1,0 +1,28 @@
+{
+  "name": "es6-modules-ben",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --progress --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ben Forshey <hello@integrisweb.com> (integrisweb.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.2",
+    "babel-preset-env": "1.6.1",
+    "webpack": "3.10.0"
+  },
+  "dependencies": {
+    "axios": "0.17.1",
+    "flickity": "2.0.10",
+    "insane": "2.6.2",
+    "jquery": "3.2.1",
+    "jsonp": "0.2.1",
+    "lodash": "4.17.4",
+    "md5": "2.2.1",
+    "slug": "0.9.1"
+  }
+}
