@@ -6,24 +6,52 @@
 </head>
 <body>
 <script>
+  // NOTE: Object constructor returns instance with "new" keyword.
   function Dog(name, breed) {
     this.name = name;
     this.breed = breed;
   }
-  Dog.prototype.bark = function() {
-    console.log(`Bark Bark! My name is ${this.name}`)
-  }
-
   const snickers = new Dog('Snickers', 'King Charles');
   const sunny = new Dog('Sunny', 'Golden Doodle');
 
-  Dog.prototype.bark = function() {
-    console.log(`Bark Bark🇨🇦🇨🇦🇨🇦! My name is ${this.name} and I'm a ${this.breed}`);
-  }
+  console.log(snickers);
+  console.log(sunny);
 
-  Dog.prototype.cuddle = function() {
-    console.log(`I love you owner!`);
-  }
+  // NOTE: A Factory Function returns an instance without the "new" keyword.
+  const createCat = ({
+    name = 'fluffy',
+    breed = 'tabby',
+  } = {}) => ({
+    name,
+    breed,
+  });
+
+  const pinkBow = createCat({
+    name: 'Pink Bow',
+    breed: 'American Shorthair',
+  });
+
+  console.log(pinkBow);
+
+  // NOTE: prototypal inheritance allows instances to receive modification.
+  Dog.prototype.bark = function bark() {
+    return `Bark Bark! My name is ${this.name}`;
+  };
+
+  console.log(snickers.bark());
+  console.log(sunny.bark());
+
+  Dog.prototype.bark = function bark() {
+    return `Bark Bark🇨🇦🇨🇦🇨🇦! My name is ${this.name} and I'm a ${this.breed}`;
+  };
+
+  console.log(snickers.bark());
+  console.log(sunny.bark());
+
+  Dog.prototype.cuddle = function cuddle() {
+    return 'I love you owner!';
+  };
+
 </script>
 </body>
 </html>

@@ -6,21 +6,54 @@
 </head>
 <body>
 <script>
-  function Dog(name, breed) {
-    this.name = name;
-    this.breed = breed;
+  // NOTE: Class expression, like function expression.
+  const Cat = class {
+    constructor(name, breed) {
+      this.name = name;
+      this.breed = breed;
+    }
+  };
+
+  // NOTE: Class declaration, like function declaration.
+  class Dog {
+    // The only required declaration (what happens when somone creates a new class).
+    constructor(name, breed) {
+      this.name = name;
+      this.breed = breed;
+    }
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static
+    /* "Static method calls are made directly on the class
+     and are not callable on instances of the class.
+     Static methods are often used to create utility functions." */
+    static info() {
+      return 'A dog is way better than a cat!';
+    }
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get
+    /* "The get syntax binds an object property to a function
+    that will be called when that property is looked up."
+    */
+    get nickname() {
+      return this.nn;
+    }
+
+    set nickname(n) {
+      this.nn = n.trim();
+    }
+
+    bark() {
+      return `Bark Bark! My name is ${this.name}`;
+    }
   }
-
-  Dog.prototype.bark = function() {
-    console.log(`Bark Bark! My name is ${this.name}`);
-  };
-
-  Dog.prototype.cuddle = function() {
-    console.log(`I love you owner!`);
-  };
 
   const snickers = new Dog('Snickers', 'King Charles');
   const sunny = new Dog('Sunny', 'Golden Doodle');
+
+  snickers.nickname = '   snickey    ';
+  console.log(snickers.nickname);
+
+  console.log(Dog.info());
+  console.log(snickers.bark());
+  console.log(sunny.bark());
 
 </script>
 </body>

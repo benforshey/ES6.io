@@ -22,18 +22,26 @@
     }
   }
 
+  // NOTE: The gorilla...the bannana, the forest, etc...
   class Dog extends Animal {
     constructor(name, breed) {
+      // Super calls the extended class (without which 'this' would be undefined).
       super(name);
       this.breed = breed;
     }
+
     bark() {
-      console.log('Bark bark I\'m a dog');
+      this.words = 'Bark bark I\'m a dog';
+      return this.words;
     }
   }
 
   const rhino = new Animal('Rhiney');
   const snickers = new Dog('Snickers', 'King Charles');
+
+  console.log(rhino);
+  console.log(snickers);
+  console.log(snickers.bark());
 
 </script>
 </body>

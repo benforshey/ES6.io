@@ -6,8 +6,12 @@
 </head>
 <body>
 <script>
+  // NOTE: Interesting. I had no idea you could extend an Array. This seems dangerous.
+  // Makes sense, though...since typeof an array instance is "Object".
+  // Interestingly, typeof Array is "function" (as is Number, Object, etc).
   class MovieCollection extends Array {
     constructor(name, ...items) {
+      // I used "extends", so I have to call "super".
       super(...items);
       this.name = name;
     }
@@ -19,14 +23,28 @@
     }
   }
 
-  const movies = new MovieCollection('Wes\'s Fav Movies',
+  const movies = new MovieCollection(
+    'Wes\'s Fav Movies',
     { name: 'Bee Movie', stars: 10 },
     { name: 'Star Wars Trek', stars: 1 },
     { name: 'Virgin Suicides', stars: 7 },
-    { name: 'King of the Road', stars: 8 }
+    { name: 'King of the Road', stars: 8 },
   );
 
   movies.add({ name: 'Titanic', stars: 5 });
+
+  // console.log(typeof movies);
+  console.log(movies);
+  console.table(movies.topRated());
+
+  // NOTE: Just to show object-like behavior, iterate over enumerables.
+  for (const en in movies) {
+    console.log(en, movies[en])
+  }
+  // NOTE: Just to show array-like behavior.
+  for (const movie of movies) {
+    console.log(movie);
+  }
 
 </script>
 </body>
