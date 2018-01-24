@@ -1,42 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Generators</title>
 </head>
+
 <body>
-<script>
-  function* listPeople() {
-    let i = 0;
-    yield i;
-    i++;
-    yield i;
-    i++;
-    yield i;
-  }
+  <script>
+    /* eslint-disable no-restricted-syntax */
 
-  const people = listPeople();
+    /* NOTE: While this does explain *what* generators are, I'm not yet seeing
+    a great use case for them. There's a pretty neat explanation by Eric Elliott
+    here: https://medium.com/javascript-scene/the-hidden-power-of-es6-generators-observable-async-flow-control-cfa4c7f31435
+    */
 
-  const inventors = [
-    { first: 'Albert', last: 'Einstein', year: 1879 },
-    { first: 'Isaac', last: 'Newton', year: 1643 },
-    { first: 'Galileo', last: 'Galilei', year: 1564 },
-    { first: 'Marie', last: 'Curie', year: 1867 },
-    { first: 'Johannes', last: 'Kepler', year: 1571 },
-    { first: 'Nicolaus', last: 'Copernicus', year: 1473 },
-    { first: 'Max', last: 'Planck', year: 1858 },
-  ];
-
-  function* loop(arr) {
-    console.log(inventors);
-    for (const item of arr) {
-      yield item;
+    function* listPeople() {
+      let i = 0;
+      yield i;
+      i += 1;
+      yield i;
+      i += 1;
+      yield i;
     }
-  }
 
-  const inventorGen = loop(inventors);
+    const people = listPeople();
 
+    console.log(people.next());
 
-</script>
+    const inventors = [
+      { first: 'Albert', last: 'Einstein', year: 1879 },
+      { first: 'Isaac', last: 'Newton', year: 1643 },
+      { first: 'Galileo', last: 'Galilei', year: 1564 },
+      { first: 'Marie', last: 'Curie', year: 1867 },
+      { first: 'Johannes', last: 'Kepler', year: 1571 },
+      { first: 'Nicolaus', last: 'Copernicus', year: 1473 },
+      { first: 'Max', last: 'Planck', year: 1858 },
+    ];
+
+    function* loop(arr) {
+      // console.log(arr);  // outside closure after first call
+      for (const item of arr) {
+        console.log(arr);
+        yield item;
+      }
+    }
+
+    const inventorGen = loop(inventors);
+
+    console.log(inventorGen.next());
+
+  </script>
 </body>
+
 </html>
