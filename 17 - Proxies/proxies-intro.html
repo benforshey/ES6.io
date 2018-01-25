@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Proxies!</title>
 </head>
-<body>
-<script>
-  const person = { name: 'Wes', age: 100 };
-  const personProxy = new Proxy(person, {
-    get(target, name) {
-      // console.log('someone is asking for ', target, name);
-      return target[name].toUpperCase();
-    },
-    set(target, name, value) {
-      if(typeof value === 'string') {
-        target[name] = value.trim().toUpperCase() + '✂️';
-      }
-    }
-  });
 
-  personProxy.name = 'Wesley';
-</script>
+<body>
+  <script>
+    /*
+      NOTE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+     */
+    const person = { name: 'Ben', age: 100 };
+    const personProxy = new Proxy(person, { // handler
+      get(target, name) { // trap
+        console.log('someone is asking for ', target, name);
+        return target[name].toUpperCase(); // target
+      },
+      set(target, name, value) { // trap
+        console.log('someone is setting ', target, name);
+
+        if (typeof value === 'string') {
+          target[name] = `${value.trim().toUpperCase()} 😄`; // target
+        }
+      },
+    });
+
+    personProxy.name = 'Benjamin';
+  </script>
 </body>
+
 </html>
