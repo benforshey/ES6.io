@@ -1,35 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Maps!</title>
   <style>
     button {
       font-size: 50px;
-      margin:10px;
+      margin: 10px;
     }
   </style>
 </head>
+
 <body>
 
-<button>Snakes 🐍</button>
-<button>Cry 😂</button>
-<button>Ice Cream 🍦</button>
-<button>Flamin' 🔥</button>
-<button>Dancer 💃</button>
+  <button>Snakes 🐍</button>
+  <button>Cry 😂</button>
+  <button>Ice Cream 🍦</button>
+  <button>Flamin' 🔥</button>
+  <button>Dancer 💃</button>
 
-<script>
-  const clickCounts = new Map();
-  const buttons = document.querySelectorAll('button');
+  <script>
+    /*
+      NOTE: Storing information about the button, without using the DOM for state management.
+     */
+    const clickCounts = new Map();
+    const buttons = document.querySelectorAll('button');
 
-  buttons.forEach(button => {
-    clickCounts.set(button, 0);
-    button.addEventListener('click', function() {
+    function handleClicks() {
       const val = clickCounts.get(this);
-      clickCounts.set(this, val + 1);
+
+      clickCounts.set(this, val + 1); // Not +=, because that would reassign a const.
+
       console.log(clickCounts);
+    }
+
+    buttons.forEach((button) => {
+      clickCounts.set(button, 0); // The key is the object: the button.
+
+      button.addEventListener('click', handleClicks);
     });
-  });
-</script>
+  </script>
 </body>
+
 </html>

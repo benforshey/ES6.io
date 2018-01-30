@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Maps!</title>
 </head>
+
 <body>
-<script>
-  const dogs = new Map();
+  <script>
+    /*
+      NOTE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+      Maps object holds key-value pairs.
+      Useful methods:
+        has, get, set
+     */
+    const dogs = new Map();
 
-  dogs.set('Snickers', 3);
-  dogs.set('Sunny', 2);
-  dogs.set('Hugo', 10);
+    dogs.set('Snickers', 3);
+    dogs.set('Sunny', 2);
+    dogs.set('Hugo', 10);
 
-  dogs.forEach((val, key) => console.log(val, key));
+    dogs.forEach((val, key) => console.log(val, key));
 
-  for (const [key, val] of dogs) {
-    console.log(key, val);
-  }
+    // Destructuring can give us the key and value.
+    // for (const [key, val] of dogs) {
+    //   console.log(key, val);
+    // }
 
-</script>
+  </script>
 </body>
+
 </html>
