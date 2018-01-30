@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Brunch with Sets</title>
 </head>
+
 <body>
-<script>
-  let dog1 = { name: 'Snickers', age: 3 };
-  let dog2 = { name: 'sunny', age: 1 };
+  <script>
+    /*
+      NOTE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet
+      Like a set, but can only contain Objects.
+      Cannot enumerate over the WeakSet.
+     */
+    let dog1 = { name: 'Snickers', age: 3 };
+    const dog2 = { name: 'sunny', age: 1 };
 
-  const weakSauce = new WeakSet([dog1, dog2]);
+    const weakSauce = new WeakSet([dog1, dog2]);
 
-  console.log(weakSauce);
-  dog1 = null;
-  console.log(weakSauce);
+    console.log(weakSauce);
+    dog1 = null; // This will eventually be garbage collected out of the WeakSet.
+    // You can't force garbage collection in JS, so wait a bit for it to (hopefully) happen.
+    setTimeout(() => {
+      console.log(weakSauce);
+    }, 3000);
 
-</script>
+  </script>
 </body>
+
 </html>

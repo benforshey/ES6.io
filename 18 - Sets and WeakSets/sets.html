@@ -1,25 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Sets</title>
 </head>
+
 <body>
-<script>
-  const people = new Set();
-  people.add('Wes');
-  people.add('Snickers');
-  people.add('Kait');
+  <script>
+    /*
+      NOTE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
+      Not index based, and will only contain unique values.
+      Useful Methods:
+        entries, keys, values
+        size
+        delete, clear
+    */
+    const people = new Set();
+    people.add('Wes');
+    people.add('Snickers');
+    people.add('Kait');
 
-  for (const person of  people) {
-    console.log(person);
-  }
+    console.log(people.values());
+    for (const person of people) {
+      console.log(person);
+    }
 
-  const students = new Set(['Wes', 'Kara', 'Tony']);
+    // Define an array at creation.
+    const students = new Set(['Wes', 'Kara', 'Tony']);
+    students.add('Kara'); // All values in a Set are unique, so this does nothing.
+    console.log(students);
 
-  const dogs = ['Snickers', 'Sunny'];
-  const dogSet = new Set(dogs);
+    const dogs = ['Snickers', 'Sunny'];
+    // Pass a defined array at creation.
+    const dogSet = new Set(dogs);
+    console.log(dogSet);
 
-</script>
+  </script>
 </body>
+
 </html>
