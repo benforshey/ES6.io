@@ -22,9 +22,11 @@
     people.add('Kait');
 
     console.log(people.values());
-    for (const person of people) {
-      console.log(person);
-    }
+
+    people.forEach(e => console.log(e));
+    // for (const person of people) {
+    //   console.log(person);
+    // }
 
     // Define an array at creation.
     const students = new Set(['Wes', 'Kara', 'Tony']);
