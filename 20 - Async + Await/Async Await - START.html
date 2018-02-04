@@ -7,7 +7,71 @@
 
 <body>
   <script>
+    /*
+      NOTE: sync: the task must be completed before anythign else is evaluated.
+      async: the next line will be evaluated without requiring the previous line to be completed.
+     */
 
+    // alert() is an example of a blocking function.
+    // NOTE: This is annoying; don't run it. 😄
+    // setInterval(() => {
+    //   console.log(Date.now());
+    //   alert('blocking');
+    // }, 500);
+
+    function breathe(amount) {
+      return new Promise((resolve, reject) => {
+        const limit = 500;
+        if (amount < limit) {
+          reject(new Error(`The amount must be greater than ${limit}. Your amount is ${amount}`));
+        }
+        return setTimeout(() => resolve(`Breathed for ${amount / 1000} seconds.`), amount);
+      });
+    }
+
+    // NOTE: async / await is flow control for Promises and asynchronous code.
+    // Cannot just use "await" in the top-level global namespace. Have to declare asyn func.
+    // async function go() {
+    //   console.log('start');
+    //   try { // error handling without higher-order functions
+    //     console.log(await breathe(500)); // can just evaluate Promise
+    //     const res1 = await breathe(900); // or store result of Promise in variable
+    //     console.log(res1);
+    //     const res2 = await breathe(1200);
+    //     console.log(res2);
+    //     const res3 = await breathe(1500);
+    //     console.log(res3);
+    //     console.log(await breathe(200));
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    //   console.log('end');
+    // }
+
+    // NOTE: This is just wrong. It doesn't actually catch the error and continue operations.
+    const catchErrors = fn => (...args) => fn(...args).catch(err => console.error(err));
+    // function catchErrors(fn) {
+    //   return function (...args) {
+    //     return fn(...args).catch(err => console.error(err));
+    //   };
+    // }
+
+    async function go(first, last) {
+      console.log(`starting for ${first} ${last}`);
+      console.log(await breathe(500));
+      const res1 = await breathe(900);
+      console.log(res1);
+      const res2 = await breathe(1200);
+      console.log(res2);
+      const res3 = await breathe(200);
+      console.log(res3);
+      const res4 = await breathe(2000);
+      console.log(res4);
+      console.log('end');
+    }
+
+    const wrappedFunction = catchErrors(go);
+    wrappedFunction('Ben', 'Forshey');
   </script>
 </body>
 

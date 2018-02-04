@@ -9,7 +9,23 @@
 
 <body>
   <script>
+    // NOTE: fetch does not assume JSON. Use .json() method.
+    // fetch('https://api.github.com/users/benforshey')
+    //   .then(res => res.json()) // parse the promised response
+    //   .then(res => console.log(res)) // work with the promised JSON
+    //   .catch(err => console.error(err));
 
+    const video = document.querySelector('.handsome');
+
+    navigator.mediaDevices.getUserMedia({
+      video: true,
+    })
+      .then((mediaStream) => {
+        video.srcObject = mediaStream;
+        video.load();
+        return video.play();
+      })
+      .catch(err => console.error(`We couldn't start your webcam beacuse: ${err}`));
   </script>
 </body>
 

@@ -7,7 +7,27 @@
 
 <body>
   <script>
+    // NOTE: There are a lot of callback-based APIs that you can "promisify".
+    // navigator.geolocation.getCurrentPosition((pos) => {
+    //   console.log(pos);
+    // }, (err) => {
+    //   console.error(err);
+    // });
 
+    function promisifyGetCurrentPosition(...args) {
+      return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(...args, resolve, reject);
+      });
+    }
+
+    async function getLocation() {
+      console.log('starting getLocation');
+      const pos = await promisifyGetCurrentPosition();
+      console.log(pos);
+      console.log('finished getLocation');
+    }
+
+    getLocation();
   </script>
 </body>
 
