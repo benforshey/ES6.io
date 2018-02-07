@@ -7,10 +7,17 @@
 
 <body>
   <script>
-    const strings = ['short', 'medium size', 'this is really really long', 'this is really reall really really really really long'];
-    const longestString = strings.sort(str => str.length).map(str => str.length)[0];
+    const strings = ['short', 'medium size', 'this is really really long', 'this is really really really really really really long'];
+    // const longestString = strings.sort(str => str.length).map(str => str.length)[0];
+    // NOTE: Can avoid side effects by defining new array literal with spread syntax.
+    const longestString = [...strings]
+      .sort(str => str.length)
+      .map(str => str.length)[0];
 
-    strings.forEach(str => console.log(str.padStart(longestString)));
+    const padded = strings.map(str => str.padStart(longestString));
+
+    console.log(longestString);
+    console.table(padded);
   </script>
 </body>
 

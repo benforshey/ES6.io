@@ -6,17 +6,45 @@
 </head>
 
 <body>
+  <nav>
+    <ul></ul>
+  </nav>
+  <div class="inventory__total"></div>
+  <div>
+    <ul class="inventory__list">
+    </ul>
+  </div>
   <script>
+    const nav = document.querySelector('nav>ul');
+    const total = document.querySelector('.inventory__total');
+    const list = document.querySelector('.inventory__list');
+
     const inventory = {
       backpacks: 10,
       jeans: 23,
       hoodies: 4,
-      shoes: 11
+      shoes: 11,
     };
 
     // Make a nav for the inventory
+    const navList = Object.keys(inventory)
+      .map(item => `<li>${item}</li>`)
+      .join('');
+
+    nav.innerHTML = navList;
 
     // tell us how many values we have
+    const totalInventory = Object.values(inventory)
+      .reduce((acc, cur) => acc + cur, 0);
+
+    total.innerHTML = `${totalInventory} total items in stock.`;
+
+    // print an inventory list with numbers.
+    const listInventory = Object.entries(inventory)
+      .map(([key, value]) => `<li>${value.toString(10).padStart(3, '0')} ${key} in stock.</li>`)
+      .join('');
+
+    list.innerHTML = listInventory;
   </script>
 </body>
 
